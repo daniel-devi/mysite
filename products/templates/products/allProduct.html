@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block description %}{{product.description}}{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block keywords %}signup, myshop{% endblock %}
+{% block css %}{% static "product/catlog.css" %}{% endblock %}
+{% block title %}Product Catlog{% endblock %}
+{% block body %}
+    
+{% include "includes/nav.html" %}
+<main>
+{% for products in product %}
+    <div class="product-card">
+    <img src="{{products.image.url}}" class="product-img">
+            <div class="review-con"><p>Reviews 4.8⭐</p></div>
+    <div style="padding:20px 25px">
+        <h3>{{products.title}}</h3>
+        <p>{{products.description}}</p>
+        <p>{{products.brand}}</p>
+        <p>$ {{products.price}}</p>
+        <a href="{% url 'product_page' products.brand.title products.slug%}">View Product</a>
+    </div>
+    </div>
+</main>
+{% endfor%}
+
+
+{% endblock %}
